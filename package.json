@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node src/Tools/gitInfo.js && react-scripts build",
     "test": "react-scripts test"
   },
   "eslintConfig": {
