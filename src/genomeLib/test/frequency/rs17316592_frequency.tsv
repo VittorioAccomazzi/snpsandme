@@ -1,0 +1,50 @@
+#URL	https://www.ncbi.nlm.nih.gov/snp/rs17316592/download/frequency
+#NCBI Reference SNP (rs) Report ALPHA	rs17316592
+#Current Build	154
+#Released	April 27, 2020
+#Organism	Homo sapiens
+#Position	chrY:16448125 (GRCh38.p12)
+#Alleles	T>G
+#Variation Type	SNV (Single Nucleotide Variation)
+#Publications	0 citations
+#
+#Frequency Data Table
+#################
+#Study	Population	Group	Samplesize	Ref Allele	Alt Allele	BioProject ID	BioSample ID
+ALFA	Total	Global	33688	T=0.99003	G=0.00997	PRJNA507278	SAMN10492705
+ALFA	European	Sub	30020	T=0.99327	G=0.00673		SAMN10492695
+ALFA	Other	Sub	1354	T=0.9645	G=0.0355		SAMN11605645
+ALFA	Latin American 2	Sub	1268	T=0.9976	G=0.0024		SAMN10492700
+ALFA	African	Sub	698	T=0.999	G=0.001		SAMN10492703
+ALFA	Asian	Sub	194	T=0.577	G=0.423		SAMN10492704
+ALFA	Latin American 1	Sub	142	T=1.000	G=0.000		SAMN10492699
+ALFA	South Asian	Sub	12	T=1.00	G=0.00		SAMN10492702
+KOREAN population from KRGDB	KOREAN	Study-wide	1400	T=0.6193	G=0.3807	PRJNA589833	
+1000Genomes	Global	Study-wide	1233	T=0.9116	G=0.0884	PRJEB6930	SAMN07490465
+1000Genomes	African	Sub	319	T=1.000	G=0.000		SAMN07486022
+1000Genomes	South Asian	Sub	260	T=0.992	G=0.008		SAMN07486027
+1000Genomes	East Asian	Sub	244	T=0.561	G=0.439		SAMN07486024
+1000Genomes	Europe	Sub	240	T=1.000	G=0.000		SAMN07488239
+1000Genomes	American	Sub	170	T=1.000	G=0.000		SAMN07488242
+chrY_custom_capture	Global	Study-wide	896	T=0.971	G=0.029	PRJNA579346	SAMN13109273
+chrY_custom_capture	AFP	Sub	0	T=0	G=0		SAMN13109399
+chrY_custom_capture	AHG	Sub	0	T=0	G=0		SAMN13109400
+chrY_custom_capture	ASC	Sub	0	T=0	G=0		SAMN13109401
+chrY_custom_capture	ASE	Sub	0	T=0	G=0		SAMN13109402
+chrY_custom_capture	AUS	Sub	0	T=0	G=0		SAMN13109403
+chrY_custom_capture	BRI	Sub	0	T=0	G=0		SAMN13109404
+chrY_custom_capture	ENV	Sub	0	T=0	G=0		SAMN13109405
+chrY_custom_capture	ESC	Sub	0	T=0	G=0		SAMN13109406
+chrY_custom_capture	ESE	Sub	0	T=0	G=0		SAMN13109407
+chrY_custom_capture	ESW	Sub	0	T=0	G=0		SAMN13109408
+chrY_custom_capture	MEX	Sub	0	T=0	G=0		SAMN13109409
+chrY_custom_capture	MNE	Sub	0	T=0	G=0		SAMN13109410
+chrY_custom_capture	SCA	Sub	0	T=0	G=0		SAMN13109411
+Genome-wide autozygosity in Daghestan	Global	Study-wide	816	T=0.990	G=0.010	PRJNA576826	SAMN13013121
+Genome-wide autozygosity in Daghestan	Daghestan	Sub	308	T=1.000	G=0.000		SAMN13013126
+Genome-wide autozygosity in Daghestan	Near_East	Sub	144	T=1.000	G=0.000		SAMN13013123
+Genome-wide autozygosity in Daghestan	Central Asia	Sub	122	T=0.934	G=0.066		SAMN13013124
+Genome-wide autozygosity in Daghestan	Europe	Sub	108	T=1.000	G=0.000		SAMN13013127
+Genome-wide autozygosity in Daghestan	South Asian	Sub	98	T=1.00	G=0.00		SAMN13013122
+Genome-wide autozygosity in Daghestan	Caucasus	Sub	36	T=1.00	G=0.00		SAMN13013125
+SGDP_PRJ	Global	Study-wide	26	T=0.00	G=1.00	PRJNA586841	

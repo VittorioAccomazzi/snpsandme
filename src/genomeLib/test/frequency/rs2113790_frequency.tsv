@@ -1,0 +1,26 @@
+#URL	https://www.ncbi.nlm.nih.gov/snp/rs2113790/download/frequency
+#NCBI Reference SNP (rs) Report ALPHA	rs2113790
+#Current Build	154
+#Released	April 27, 2020
+#Organism	Homo sapiens
+#Position	chrY:3539224 (GRCh38.p12)
+#Alleles	C>T
+#Variation Type	SNV (Single Nucleotide Variation)
+#Publications	0 citations
+#
+#Frequency Data Table
+#################
+#Study	Population	Group	Samplesize	Ref Allele	Alt Allele	BioProject ID	BioSample ID
+KOREAN population from KRGDB	KOREAN	Study-wide	1508	C=0.9111	T=0.0889	PRJNA589833	
+ALFA	Total	Global	996	C=0.639	T=0.361	PRJNA507278	SAMN10492705
+ALFA	European	Sub	832	C=0.673	T=0.327		SAMN10492695
+ALFA	Other	Sub	86	C=0.58	T=0.42		SAMN11605645
+ALFA	African	Sub	62	C=0.31	T=0.69		SAMN10492703
+ALFA	Latin American 2	Sub	8	C=0.5	T=0.5		SAMN10492700
+ALFA	Asian	Sub	6	C=0.3	T=0.7		SAMN10492704
+ALFA	Latin American 1	Sub	2	C=0.5	T=0.5		SAMN10492699
+ALFA	South Asian	Sub	0	C=0	T=0		SAMN10492702
+SGDP_PRJ	Global	Study-wide	138	C=0.312	T=0.688	PRJNA586841	
+A Vietnamese Genetic Variation Database	Global	Study-wide	46	C=0.96	T=0.04	PRJNA515199	SAMN10744005
+The Danish reference pan genome	Danish	Study-wide	26	C=0.62	T=0.38	PRJEB7725	SAMN13003120
+Siberian	Global	Study-wide	16	C=0.25	T=0.75	PRJNA267856	SAMN13113809

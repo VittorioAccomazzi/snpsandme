@@ -1,0 +1,52 @@
+#URL	https://www.ncbi.nlm.nih.gov/snp/rs2262190/download/frequency
+#NCBI Reference SNP (rs) Report ALPHA	rs2262190
+#Current Build	154
+#Released	April 25, 2020
+#Organism	Homo sapiens
+#Position	chr1:1943828 (GRCh38.p12)
+#Alleles	A>G
+#Variation Type	SNV (Single Nucleotide Variation)
+#Publications	0 citations
+#
+#Frequency Data Table
+#################
+#Study	Population	Group	Samplesize	Ref Allele	Alt Allele	BioProject ID	BioSample ID
+TopMed	Global	Study-wide	125568	A=0.154904	G=0.845096	PRJNA400167	
+ALFA	Total	Global	81302	A=0.19206	G=0.80794	PRJNA507278	SAMN10492705
+ALFA	European	Sub	70120	A=0.20067	G=0.79933		SAMN10492695
+ALFA	Latin American 2	Sub	5332	A=0.1525	G=0.8475		SAMN10492700
+ALFA	African	Sub	3014	A=0.0803	G=0.9197		SAMN10492703
+ALFA	Other	Sub	2020	A=0.1634	G=0.8366		SAMN11605645
+ALFA	Latin American 1	Sub	554	A=0.195	G=0.805		SAMN10492699
+ALFA	Asian	Sub	204	A=0.211	G=0.789		SAMN10492704
+ALFA	South Asian	Sub	58	A=0.14	G=0.86		SAMN10492702
+gnomAD - Genomes	Global	Study-wide	31364	A=0.15604	G=0.84396	PRJNA398795	SAMN07488253
+gnomAD - Genomes	European	Sub	18884	A=0.18984	G=0.81016		SAMN10181265
+gnomAD - Genomes	African	Sub	8704	A=0.0690	G=0.9310		SAMN07488254
+gnomAD - Genomes	East Asian	Sub	1556	A=0.1793	G=0.8207		SAMN07488251
+gnomAD - Genomes	Other	Sub	1082	A=0.2015	G=0.7985		SAMN07488248
+gnomAD - Genomes	American	Sub	848	A=0.142	G=0.858		SAMN07488255
+gnomAD - Genomes	Ashkenazi Jewish	Sub	290	A=0.314	G=0.686		SAMN07488252
+1000Genomes	Global	Study-wide	5008	A=0.1514	G=0.8486	PRJEB6930	SAMN07490465
+1000Genomes	African	Sub	1322	A=0.0461	G=0.9539		SAMN07486022
+1000Genomes	East Asian	Sub	1008	A=0.1766	G=0.8234		SAMN07486024
+1000Genomes	Europe	Sub	1006	A=0.2078	G=0.7922		SAMN07488239
+1000Genomes	South Asian	Sub	978	A=0.199	G=0.801		SAMN07486027
+1000Genomes	American	Sub	694	A=0.166	G=0.834		SAMN07488242
+Genetic variation in the Estonian population	Estonian	Study-wide	4480	A=0.1663	G=0.8337	PRJNA489787	
+The Avon Longitudinal Study of Parents and Children	PARENT AND CHILD COHORT	Study-wide	3854	A=0.1827	G=0.8173	PRJEB7217	
+UK 10K study - Twins	TWIN COHORT	Study-wide	3708	A=0.1982	G=0.8018	PRJEB7218	
+KOREAN population from KRGDB	KOREAN	Study-wide	2928	A=0.2182	G=0.7818	PRJNA589833	
+HapMap	Global	Study-wide	1880	A=0.1388	G=0.8612	PRJNA60817	SAMN10820145
+HapMap	American	Sub	764	A=0.177	G=0.823		SAMN10821182
+HapMap	African	Sub	690	A=0.046	G=0.954		SAMN10821181
+HapMap	Asian	Sub	254	A=0.169	G=0.831		SAMN10821184
+HapMap	Europe	Sub	172	A=0.297	G=0.703		SAMN10821183
+Korean Genome Project	KOREAN	Study-wide	1820	A=0.2341	G=0.7659	PRJNA609628	
+Genome of the Netherlands Release 5	Genome of the Netherlands	Study-wide	998	A=0.195	G=0.805	PRJEB5829	SAMN13000132
+Northern Sweden	ACPOP	Study-wide	600	A=0.208	G=0.792	PPRJNA503394	SAMN10359154
+SGDP_PRJ	Global	Study-wide	536	A=0.138	G=0.862	PRJNA586841	
+Qatari	Global	Study-wide	216	A=0.287	G=0.713	PRJNA288297	SAMN13019808
+A Vietnamese Genetic Variation Database	Global	Study-wide	214	A=0.178	G=0.822	PRJNA515199	SAMN10744005
+Siberian	Global	Study-wide	54	A=0.13	G=0.87	PRJNA267856	SAMN13113809
+The Danish reference pan genome	Danish	Study-wide	40	A=0.20	G=0.80	PRJEB7725	SAMN13003120
