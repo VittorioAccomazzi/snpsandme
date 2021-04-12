@@ -6,4 +6,4 @@
 The application currently limits the analysis to the SNPs to the [Y Chromosome](https://en.wikipedia.org/wiki/Y_chromosome) (which you likely not have if you are female) and [Mitochondrial DNA](https://en.wikipedia.org/wiki/Mitochondrial_DNA), which you share with your sibling ad your mother, and grandmother. This limitation arbitrary simply because I’m interested in the genealogy, a display of the full genome will take simmplyu too long and it is nort practical for being done inn the browser.
 
 ### Privacy
-Privacy is an important feature when dealing with genomic information. This application is designed to completly respect your privacy. The applicaton **does not** upload, store or retain in any way your genome. Your genome will not leave your browser, and so your computer.
+Privacy is an important feature when dealing with genomic information. This application is designed to completly respect your privacy. The applicaton **does not** upload, store or retain in any way your genome. Your genome will not leave your browser, and so your computer. The application however does leverage Google's Analytics to track the number of page access.
