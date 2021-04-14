@@ -8,6 +8,9 @@
 #versioning
 gitInfo.json
 
+#snp cache
+cache.json
+
 # testing
 /coverage
 

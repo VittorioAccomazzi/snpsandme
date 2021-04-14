@@ -1,5 +1,5 @@
-const {exec} = require ('child-process-promise');
-const fs = require('fs');
+import * as fs from 'fs';
+import * as cp from 'child-process-promise';
 
 ( async () =>{
 
@@ -10,9 +10,9 @@ const fs = require('fs');
 
     try
     {
-        let short = await exec('git rev-parse --short HEAD')
-        let long  = await exec('git rev-parse HEAD')
-        let stat  = await exec('git status')
+        let short = await cp.exec('git rev-parse --short HEAD')
+        let long  = await cp.exec('git rev-parse HEAD')
+        let stat  = await cp.exec('git status')
 
         let status = stat.stdout;
         let isRel  = status.indexOf("nothing to commit, working tree clean") > 0;

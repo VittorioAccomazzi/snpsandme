@@ -1,7 +1,6 @@
 import * as fs from 'fs'
 import SNPs, { snp } from './snps'
-
-export const sampleGenomeFile = 'src/genomelib/test/genome/23andme.txt'
+import { sampleGenomeFile } from './test/testUtils'
 
 const expected: Partial<snp>[] = [
   {
