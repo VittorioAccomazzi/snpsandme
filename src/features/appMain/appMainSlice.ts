@@ -1,20 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store'
+import {PopulationType} from '../../genomeLib/frequencyEvaluator'
 
 
-export type PopulationType = 'European' | 'African' | 'EAsian' |  'SAsian'  
 
 interface PopulationTypeState {
     population : PopulationType
   }
   
-  const initialState: PopulationTypeState = {
+  const initialPoplationTypeState: PopulationTypeState = {
     population : 'European'
   };
 
-  export const slice = createSlice({
+  export const populationTypeSlice = createSlice({
     name: 'PopulationType',
-    initialState,
+    initialState: initialPoplationTypeState,
     reducers: {
         setPopulation : ( state, action : PayloadAction<PopulationType> ) => {
             state.population = action.payload
@@ -22,6 +22,6 @@ interface PopulationTypeState {
       }
     })
   
-  export const { setPopulation} = slice.actions;
+  export const {setPopulation} = populationTypeSlice.actions;
   export const selecPopulation= (state: RootState) => state.population.population
-  export default slice.reducer;
+  export default populationTypeSlice.reducer;

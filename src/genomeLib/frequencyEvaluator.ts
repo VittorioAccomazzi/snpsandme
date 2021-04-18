@@ -4,23 +4,34 @@ import { Frequencies, Frequency } from './snpFrequency'
 import FrequencyCache from './frequencyCache'
 import { snp } from './snps'
 
-export type ProgressCallback = ( snpId : string, freq : number | null ) => void
-export type PopulationType = 'European' | 'African' | 'EAsian' |  'SAsian'   
+export type ProgressCallback = ( snpId : string, perc : number | null, pub : number ) => void
+export type PopulationType = 'European' | 'African' | 'EAsian' |  'SAsian' 
+
+interface EvalResult {
+    perc : number | null, // frequency of the aminoacid
+    pub : number // number of publications.
+}  
 
 export default class FrequencyEvaluator extends FrequencyDownloader {
 
     private type : PopulationType
     private cache? : FrequencyCache
+    private noFetch? : boolean
 
-    constructor( type : PopulationType, cache? : FrequencyCache ){
+    constructor( type : PopulationType, cache? : FrequencyCache, noFetch? : boolean ){
         super()
         this.type = type
         this.cache= cache
+        this.noFetch = noFetch
     }
 
     async evaluate( snps : snp [], downloader : IDownloader, callBack : ProgressCallback ){
         let remaining = this.cacheEvaluator(snps, callBack)
-        await this.downloderEvaluator(remaining, callBack, downloader)
+        if( this.noFetch ){
+            this.returnUnknown(remaining, callBack)
+        } else {
+            await this.downloderEvaluator(remaining, callBack, downloader)
+        }
     }
 
     private cacheEvaluator(snps : snp [], callBack: ProgressCallback ) : snp [] {
@@ -30,8 +41,8 @@ export default class FrequencyEvaluator extends FrequencyDownloader {
             snps.forEach(snp=>{
                 let freq = this.cache!.getFrequency(snp.id)
                 if( freq != null ){
-                    let prob = this.evaluateProbability(freq, snp)
-                    callBack(snp.id, prob)
+                    let {perc, pub} = this.evaluatePercentage(freq, snp)
+                    callBack(snp.id, perc, pub)
                 } else {
                     remaining.push(snp)
                 }
@@ -42,32 +53,40 @@ export default class FrequencyEvaluator extends FrequencyDownloader {
 
     private async downloderEvaluator(snps: snp[], callBack: ProgressCallback, downloader: IDownloader) {
         const process = (snpid: string, freq: Frequencies | null) => {
-            let prob = null
+            let perc : number | null = null
+            let pub : number =0
             if (freq != null) {
-                prob = this.evaluateProbability(freq, snps.find(v => v.id === snpid)!)
+                ({perc, pub} = this.evaluatePercentage(freq, snps.find(v => v.id === snpid)!))
             }
-            callBack(snpid, prob)
+            callBack(snpid, perc, pub)
         }
         await this.download(snps.map(v=>v.id), downloader, process)
     }
 
-    private evaluateProbability(freq: Frequencies, s: snp): number | null {
-        let prob =null
+    private evaluatePercentage(freq: Frequencies, s: snp): EvalResult {
+        let perc =null
+        let pub = parseInt(freq.pub)
         if( freq.chr === s.chr){
             let val = freq[this.type]
             if( val ){
-                let probs : number [] = s.bases.split("").map(base=>this.baseProbabiliy(base,val!))
-                prob = Math.min(...probs)
+                let probs : number [] = s.bases.split("").map(base=>this.basePercentage(base,val!))
+                perc = Math.min(...probs)
             }
         } 
-        return prob
+        return  {perc,pub}
     }
 
-    private baseProbabiliy(base: string, freq: Frequency ): number {
+    private basePercentage(base: string, freq: Frequency ): number {
         let prob =0
         if( base === freq.maj ) prob = freq.freq
         if( base === freq.min ) prob = 1.0-freq.freq
         return prob
     }
 
+    private returnUnknown(remaining: snp[], callBack: ProgressCallback) {
+        remaining.forEach(val =>callBack(val.id, null, 0))
+    }
+
 }
+
+

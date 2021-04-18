@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function AppToolbar() {
   const classes = useStyles();
-  const showButtons = new URLSearchParams(window.location.search).get('all') != null
 
   return (
     <div className={classes.root}>
