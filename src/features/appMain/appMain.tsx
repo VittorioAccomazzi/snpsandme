@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Typography from '@material-ui/core/Typography';
-import SnpTable from './snpsTable'
+import SnpTable from './appTable'
 
 const useStyles = makeStyles((theme) => ({
     root: {

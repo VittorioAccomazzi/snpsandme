@@ -1,9 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import populationReducer from '../features/appMain/appMainSlice';
+import populationReducer, {snpsReducer} from '../features/appMain/appMainSlice';
 
 export const store = configureStore({
   reducer: {
-    population: populationReducer
+    population: populationReducer,
+    snps: snpsReducer
   },
 });
 
