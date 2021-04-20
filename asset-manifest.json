@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.js": "/snpsandme/static/js/main.5cd21098.chunk.js",
-    "main.js.map": "/snpsandme/static/js/main.5cd21098.chunk.js.map",
+    "main.js": "/snpsandme/static/js/main.d20b8243.chunk.js",
+    "main.js.map": "/snpsandme/static/js/main.d20b8243.chunk.js.map",
     "runtime-main.js": "/snpsandme/static/js/runtime-main.20e8d037.js",
     "runtime-main.js.map": "/snpsandme/static/js/runtime-main.20e8d037.js.map",
-    "static/js/2.09bb1dc0.chunk.js": "/snpsandme/static/js/2.09bb1dc0.chunk.js",
-    "static/js/2.09bb1dc0.chunk.js.map": "/snpsandme/static/js/2.09bb1dc0.chunk.js.map",
+    "static/js/2.5ee9d38c.chunk.js": "/snpsandme/static/js/2.5ee9d38c.chunk.js",
+    "static/js/2.5ee9d38c.chunk.js.map": "/snpsandme/static/js/2.5ee9d38c.chunk.js.map",
+    "05a5069ab37953881250.worker.js": "/snpsandme/05a5069ab37953881250.worker.js",
+    "05a5069ab37953881250.worker.js.LICENSE.txt": "/snpsandme/05a5069ab37953881250.worker.js.LICENSE.txt",
+    "05a5069ab37953881250.worker.js.map": "/snpsandme/05a5069ab37953881250.worker.js.map",
     "index.html": "/snpsandme/index.html",
-    "static/js/2.09bb1dc0.chunk.js.LICENSE.txt": "/snpsandme/static/js/2.09bb1dc0.chunk.js.LICENSE.txt"
+    "static/js/2.5ee9d38c.chunk.js.LICENSE.txt": "/snpsandme/static/js/2.5ee9d38c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.20e8d037.js",
-    "static/js/2.09bb1dc0.chunk.js",
-    "static/js/main.5cd21098.chunk.js"
+    "static/js/2.5ee9d38c.chunk.js",
+    "static/js/main.d20b8243.chunk.js"
   ]
 }
