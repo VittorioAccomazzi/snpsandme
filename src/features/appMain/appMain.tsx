@@ -50,8 +50,6 @@ const useStyles = makeStyles((theme) => ({
         }
     }))
 
-    const textExtensions = ['.txt']
-
     export default function AppMain(){
         const classes = useStyles();
         const [text, setText] = useState<string|null>(null)
@@ -59,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
         const dispatch = useDispatch();
 
         const onDrop = useCallback(async (files: FileWithPath[]) =>  {
-            let list = files.filter((file)=>textExtensions.some((ext)=>file.path?.toLowerCase().endsWith(ext)))
+            let list = files.filter((file)=>file.path && (file.path.toLowerCase().endsWith('.txt')||file.path.toLowerCase().indexOf('.23andme.')>0))
             if( list.length > 0 ) {
                 let file = list[0]
                 let data = await readFile(file)
