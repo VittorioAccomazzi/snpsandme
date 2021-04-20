@@ -104,3 +104,14 @@ export const higColor = "#A0A0FF"
 export const noColor  = "#FFFFFF"
 export const unkColor = "#AAAAAA"
 
+/*
+ *
+ * Default Sorting
+ *  
+ */
+export type TableHeaderSortType = 'ID' | 'Chromosome' | 'Base' | 'Frequency' | 'Publications' 
+export type SortDirection = 'asc' | 'desc'
+export const defaultSortField = 'Frequency'
+export const defaultSortOrder = 'asc' 
+
+

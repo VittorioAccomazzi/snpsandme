@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { TableCell, TableHead, TableRow, TableSortLabel } from "@material-ui/core";
+import { TableHeaderSortType, SortDirection, defaultSortOrder, defaultSortField } from "./appMainSlice";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -14,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
       }
 }))
 
-export type TableHeaderSortType = 'ID' | 'Chromosome' | 'Base' | 'Frequency' | 'Publications' 
-export type SortDirection = 'asc' | 'desc'
+
 type AlignType = 'left' | 'right'
 type OnListSort = ( id : TableHeaderSortType, dir : SortDirection ) => void
 interface TableHeader {
@@ -55,8 +55,8 @@ interface SnpsTableHeadProps {sort : OnListSort }
 
 export default function AppTableHeader ({sort} : SnpsTableHeadProps) {
     const classes = useStyles();
-    const [orderBy, setOrderBy] = useState<TableHeaderSortType>('ID')
-    const [direction, setDirection] = useState<SortDirection>('asc')
+    const [orderBy, setOrderBy] = useState<TableHeaderSortType>(defaultSortField)
+    const [direction, setDirection] = useState<SortDirection>(defaultSortOrder)
     const onClick = (id : TableHeaderSortType) => {
         let dir : SortDirection = 'asc'
         if( orderBy === id ){

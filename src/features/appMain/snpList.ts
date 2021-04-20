@@ -1,7 +1,6 @@
 import ForegroundWorker from './appWorker/fWorker'
-import {SnpEl} from './appMainSlice'
+import {defaultSortField, defaultSortOrder, SortDirection, TableHeaderSortType, SnpEl} from './appMainSlice'
 import {PopulationType} from '../../genomeLib/frequencyEvaluator'
-import { SortDirection, TableHeaderSortType } from './appTableHeader'
 import { SnpVal } from './appWorker/bWorker'
 import Snps ,{snp} from '../../genomeLib/snps'
 
@@ -20,8 +19,8 @@ export default class SnpList {
     private worker : ForegroundWorker | null = null
     private update : Update
     private list : SnpEl [] = []
-    private sortId : TableHeaderSortType = 'ID'
-    private sortDir: SortDirection = 'asc'
+    private sortId : TableHeaderSortType = defaultSortField
+    private sortDir: SortDirection = defaultSortOrder
 
     constructor( update : Update ) {
         this.update = update
@@ -112,8 +111,14 @@ function sortByPub(a : SnpVal, b : SnpVal, dir : SortDirection) : number {
 }
 
 function sortByNullNumber(a : SnpVal, b : SnpVal, dir : SortDirection, type : keyof SnpVal) : number {
-    let v1 = a[type] ?? 0
-    let v2 = b[type] ?? 0
+    let v1 = a[type]
+    let v2 = b[type]
+    if( !v1 ) v1=2
+    if( !v2 ) v2=2
+    let cmp = ( v1>v2 ? 1 : -1)
+    if( v1===v2){
+        cmp = ( a.snp.id>b.snp.id ? 1 : -1)
+    }
     let d  = dir === 'asc' ? 1 : -1
-    return d *( v1>v2 ? 1 : -1)
+    return d * cmp
 }

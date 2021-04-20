@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Table, TableContainer } from "@material-ui/core";
 import SnpList from './snpList'
-import { setSnps, selectSnps, SnpEl, selecPopulation } from "./appMainSlice";
+import { setSnps, selectSnps, SnpEl, selecPopulation, TableHeaderSortType, SortDirection  } from "./appMainSlice";
 import { useDispatch, useSelector } from "react-redux";
-import AppTableHeader, { TableHeaderSortType, SortDirection } from './appTableHeader'
+import AppTableHeader from './appTableHeader'
 import AppTableBody from './appTableBody'
 
 const useStyles = makeStyles((theme) => ({

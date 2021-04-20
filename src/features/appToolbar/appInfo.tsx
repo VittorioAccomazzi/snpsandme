@@ -32,10 +32,10 @@ export default function AppInfo() {
         (snp.val.perc ? (snp.val.perc < lowThreshold ? lPerc++ : ( snp.val.perc < midThreshold ? mPerc++ : hPerc++)) : uPerc++ ) 
         : nPerc++ )
 
-   const values = [hPerc, mPerc, lPerc, uPerc, nPerc]   
+   const values = [lPerc, mPerc, hPerc, uPerc, nPerc]   
    const total = values.reduce((t,v)=>t+v,0)
    const perc = toPersentages( values )
-   const colors = [higColor, midColor, lowColor, noColor, unkColor]
+   const colors = [lowColor, midColor, higColor, noColor, unkColor]
 
   return (
 
@@ -69,7 +69,7 @@ function toPersentages(values : number [] ) : string [] {
   if( sum > 0 ){
     let per = values.map(v=>Math.floor(100*v/sum))
     let err = 100 - per.reduce((s,v)=>s+v,0) // error in roundinng. Must be positive
-    per[0] += err // to make sure that rounds up to 100
+    per[per.length-1] += err // to make sure that rounds up to 100
     ret = per.map(v=>`${v}%`)
   }
   return ret
