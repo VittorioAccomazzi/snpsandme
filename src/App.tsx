@@ -13,8 +13,8 @@ import {
 } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
 import AppMain from  './features/appMain/appMain';
-import AppToolbar from './features/appToolbar/AppToolbar'
-import AppVersion from './features/appVersion/AppVersion'
+import AppToolbar from './features/appToolbar/appToolbar'
+import AppVersion from './features/appVersion/appVersion'
 
 const theme = createMuiTheme({
   palette: {

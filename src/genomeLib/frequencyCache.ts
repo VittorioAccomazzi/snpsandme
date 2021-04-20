@@ -36,9 +36,13 @@ export default class FrequencyCache extends FrequencyDownloader {
         let nDone = 0
         let process = (snpid : string, freq : Frequencies | null  )=>{
             nDone++
-            let freqString = this.frequenciesToString(freq)
-            this.cache.set(snpid,freqString)
-            callBack(nDone, missing.length)
+            try {
+                let freqString = this.frequenciesToString(freq)
+                this.cache.set(snpid,freqString)
+                callBack(nDone, missing.length)
+            } catch ( err ){
+                console.error(`exception raised for ${snpid} and freqency ${freq ? JSON.stringify(freq, null, 1 ) : "null"}`)
+            }
         }
         await this.download(missing, downloader, process)
     }

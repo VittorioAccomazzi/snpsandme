@@ -6,6 +6,8 @@ import AddIcon from '@material-ui/icons/Add';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Typography from '@material-ui/core/Typography';
 import SnpTable from './appTable'
+import { useDispatch } from 'react-redux';
+import { setFilename } from './appMainSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
         const classes = useStyles();
         const [text, setText] = useState<string|null>(null)
         const [error, setError] = useState<string|null>(null)
+        const dispatch = useDispatch();
+
         const onDrop = useCallback(async (files: FileWithPath[]) =>  {
             let list = files.filter((file)=>textExtensions.some((ext)=>file.path?.toLowerCase().endsWith(ext)))
             if( list.length > 0 ) {
@@ -61,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
                 let data = await readFile(file)
                 if( sanityCheck(data)){
                     setText(data)
+                    dispatch(setFilename(file.name))
                 } else {
                     setText(null)
                     setError(`${file.name} is not valid`)

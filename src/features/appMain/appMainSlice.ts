@@ -31,6 +31,34 @@ interface PopulationTypeState {
   export const selecPopulation= (state: RootState) => state.population.population
   export default populationTypeSlice.reducer;
 
+  /*
+ *
+ * Filename
+ *  
+*/
+
+interface FilenameTypeState {
+  filename : string
+}
+
+const initialFilenameState: FilenameTypeState = {
+  filename : ''
+};
+
+export const filenameSlice = createSlice({
+  name: 'Filename',
+  initialState: initialFilenameState,
+  reducers: {
+      setFilename : ( state, action : PayloadAction<string> ) => {
+          state.filename = action.payload
+      }
+    }
+  })
+
+export const {setFilename} = filenameSlice.actions;
+export const selecFilename= (state: RootState) => state.filename.filename
+export const filenameReducer= filenameSlice.reducer;
+
 /*
  *
  * Snps Slide

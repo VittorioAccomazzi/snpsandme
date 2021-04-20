@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Table, TableContainer } from "@material-ui/core";
 import SnpList from './snpList'
-import { setSnps, selectSnps, SnpEl } from "./appMainSlice";
+import { setSnps, selectSnps, SnpEl, selecPopulation } from "./appMainSlice";
 import { useDispatch, useSelector } from "react-redux";
 import AppTableHeader, { TableHeaderSortType, SortDirection } from './appTableHeader'
 import AppTableBody from './appTableBody'
@@ -26,14 +26,15 @@ export default function AppTable({ data } : snpsTableProps) {
     let worker = useRef<SnpList|null>(null)
     const dispatch= useDispatch();
     const snps = useSelector(selectSnps)
+    const type = useSelector(selecPopulation)
 
     useEffect(()=>{
         const update = (list : SnpEl [] ) =>{
             dispatch(setSnps(list))
         }
         if(!worker.current) worker.current = new SnpList(update)
-        worker.current.start(data,'European')
-    },[data, dispatch])
+        worker.current.start(data,type)
+    },[data, dispatch,type])
 
 
     const onSort = ( id : TableHeaderSortType, dir : SortDirection) =>{
