@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
                 setText(null)
                 setError(`unable to load ${files[0].name}`)
             }
-        }, [setText])
+        }, [setText, dispatch])
         const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     

@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
 import { Box } from '@material-ui/core';
-import { midColor, lowColor, midThreshold, lowThreshold, SnpEl, noColor, unkColor, higColor, selectSnps } from "../appMain/appMainSlice";
+import { midColor, lowColor, midThreshold, lowThreshold, noColor, unkColor, higColor, selectSnps } from "../appMain/appMainSlice";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
