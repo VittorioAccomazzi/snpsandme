@@ -98,6 +98,9 @@ export const filenameReducer= filenameSlice.reducer;
  */
 export const midThreshold = 0.5
 export const lowThreshold = 0.25
-export const midColor = "#FFFFAA"
+export const midColor = "#FFFAAA"
 export const lowColor = "#FFAAAA"
+export const higColor = "#A0A0FF"
+export const noColor  = "#FFFFFF"
+export const unkColor = "#AAAAAA"
 

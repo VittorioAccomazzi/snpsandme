@@ -1,17 +1,17 @@
 import React  from "react";
 import { TableBody, TableCell, TableRow } from "@material-ui/core";
-import { midColor, lowColor, midThreshold, lowThreshold, SnpEl } from "../appMain/appMainSlice";
+import { midColor, lowColor, midThreshold, lowThreshold, SnpEl, noColor, unkColor, higColor } from "../appMain/appMainSlice";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
      undefined :{
-        background:"#AAAAAA",
+        background: unkColor,
       },
       novalue : {
-        background:"#FFFFFF",
+        background: noColor,
       },
       high : {
-        background:"#AAAAFF",
+        background: higColor,
       },
       mid : {
         background: midColor,        
