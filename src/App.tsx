@@ -56,7 +56,7 @@ const App = ({ classes }: AppProps) => (
       <div className={classes.main}>
         <AppMain />
       </div>
-      <AppVersion label="version : " forkme={false} baseURL="https://github.com/VittorioAccomazzi/Artist" />
+      <AppVersion label="version : " forkme={false} baseURL="https://github.com/VittorioAccomazzi/snpsandme" />
     </div>
   </MuiThemeProvider>
 );
