@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState, useCallback, useEffect} from 'react'
 import  { useDropzone } from "react-dropzone"
 import { FileWithPath } from "file-selector";
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import SnpTable from './appTable'
 import { useDispatch } from 'react-redux';
 import { setFilename } from './appMainSlice';
+import { useGA4React } from 'ga-4-react';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +55,12 @@ const useStyles = makeStyles((theme) => ({
         const classes = useStyles();
         const [text, setText] = useState<string|null>(null)
         const [error, setError] = useState<string|null>(null)
-        const dispatch = useDispatch();
+        const dispatch = useDispatch()
+        const ga = useGA4React()
+
+        useEffect(()=>{
+            if( ga ) ga.pageview('main')
+        },[]) // eslint-disable-line  -- ga not added on purpose
 
         const onDrop = useCallback(async (files: FileWithPath[]) =>  {
             let list = files.filter((file)=>file.path && (file.path.toLowerCase().endsWith('.txt')||file.path.toLowerCase().indexOf('.23andme.')>0))
@@ -64,15 +70,19 @@ const useStyles = makeStyles((theme) => ({
                 if( sanityCheck(data)){
                     setText(data)
                     dispatch(setFilename(file.name))
+                    if(ga) ga.event('Valid File Load', 'valid file', '')
                 } else {
                     setText(null)
                     setError(`${file.name} is not valid`)
+                    if(ga) ga.event('Invalid File Content', 'invalid file content', '')
                 }
             } else {
                 setText(null)
                 setError(`unable to load ${files[0].name}`)
+                if(ga) ga.event('Invalid File Type', 'invalid file type', '')
             }
-        }, [setText, dispatch])
+        }, [setText, dispatch]) // eslint-disable-line  -- ga not added on purpose
+
         const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     

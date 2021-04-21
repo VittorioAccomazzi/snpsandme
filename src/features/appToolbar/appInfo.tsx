@@ -54,7 +54,7 @@ export default function AppInfo() {
       >
         {
           perc.map((el,index)=>(
-            <div style={{background: colors[index], position:'relative', width: el, height:'5px'}}/>
+            <div style={{background: colors[index], position:'relative', width: el, height:'5px'}} key={index}/>
           ))
         }
       </Box>

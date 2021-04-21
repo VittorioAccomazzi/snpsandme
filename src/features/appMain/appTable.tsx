@@ -6,6 +6,7 @@ import { setSnps, selectSnps, SnpEl, selecPopulation, TableHeaderSortType, SortD
 import { useDispatch, useSelector } from "react-redux";
 import AppTableHeader from './appTableHeader'
 import AppTableBody from './appTableBody'
+import { useGA4React } from "ga-4-react";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -27,6 +28,7 @@ export default function AppTable({ data } : snpsTableProps) {
     const dispatch= useDispatch();
     const snps = useSelector(selectSnps)
     const type = useSelector(selecPopulation)
+    const ga = useGA4React()
 
     useEffect(()=>{
         const update = (list : SnpEl [] ) =>{
@@ -39,6 +41,7 @@ export default function AppTable({ data } : snpsTableProps) {
 
     const onSort = ( id : TableHeaderSortType, dir : SortDirection) =>{
         if( worker.current ) worker.current.sort(id, dir )
+        if(ga) ga.event('Data Sort', id, '')
     }
 
     return (
