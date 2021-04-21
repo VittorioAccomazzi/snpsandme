@@ -28,9 +28,9 @@ export default function AppTableBody( { list } : SnpsTableBodyProps) {
     const classSelector = ( el : SnpEl ) : string => {
         let val = classes.undefined
         if( el.done ){
-            if( el.val.perc ){
+            if( el.val.perc !== null ){
                 val = classes.high
-                if( el.val.perc < midThreshold  ) val = classes.mid
+                if( el.val.perc < midThreshold ) val = classes.mid
                 if( el.val.perc < lowThreshold ) val = classes.low
     
             } else {
@@ -46,8 +46,8 @@ export default function AppTableBody( { list } : SnpsTableBodyProps) {
             <TableCell component="th" scope="row"><a  target='_blank' href={`https://www.ncbi.nlm.nih.gov/snp/${el.val.snp.id}`} rel="noreferrer">{el.val.snp.id}</a></TableCell>
             <TableCell align="right">{el.val.snp.chr}</TableCell>
             <TableCell align="right">{el.val.snp.bases}</TableCell>
-            <TableCell align="right">{el.val.perc ? el.val.perc.toFixed(2) : "-"}</TableCell>
-            <TableCell align="right">{el.val.pub > 0 ? el.val.pub  : el.val.perc ? "0" : "-"} </TableCell>
+            <TableCell align="right">{el.val.perc !== null ? el.val.perc.toFixed(2) : "-"}</TableCell>
+            <TableCell align="right">{el.val.pub} </TableCell>
           </TableRow>
         ))}
       </TableBody>

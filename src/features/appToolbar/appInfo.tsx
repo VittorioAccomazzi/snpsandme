@@ -29,7 +29,7 @@ export default function AppInfo() {
   let nPerc=0
 
   snps.list.forEach( snp => snp.done ? 
-        (snp.val.perc ? (snp.val.perc < lowThreshold ? lPerc++ : ( snp.val.perc < midThreshold ? mPerc++ : hPerc++)) : uPerc++ ) 
+        (snp.val.perc !== null ? (snp.val.perc < lowThreshold ? lPerc++ : ( snp.val.perc < midThreshold ? mPerc++ : hPerc++)) : uPerc++ ) 
         : nPerc++ )
 
    const values = [lPerc, mPerc, hPerc, uPerc, nPerc]   
@@ -40,7 +40,7 @@ export default function AppInfo() {
   return (
 
     <Box position="relative" className={total >0 ? classes.boxDisplay : classes.boxHidden}>
-      <Typography align='center' variant="caption" color='secondary' className={classes.margin}> {`${total} Snps, ${lPerc} low frequency`}</Typography>
+      <Typography align='center' variant="caption" color='secondary' className={classes.margin} noWrap> {`${total} Snps, ${lPerc} low frequency`}</Typography>
       <Box
           top={20}
           left={0}
@@ -69,7 +69,7 @@ function toPersentages(values : number [] ) : string [] {
   if( sum > 0 ){
     let per = values.map(v=>Math.floor(100*v/sum))
     let err = 100 - per.reduce((s,v)=>s+v,0) // error in roundinng. Must be positive
-    per[per.length-1] += err // to make sure that rounds up to 100
+    per[per.length-2] += err // to make sure that rounds up to 100
     ret = per.map(v=>`${v}%`)
   }
   return ret

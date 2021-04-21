@@ -48,7 +48,8 @@ export default class SnpList {
     }
 
     private doSort() {
-        this.list = this.list.sort((a,b)=>sortFunctions[this.sortId](a.val,b.val,this.sortDir))
+        let d  = this.sortDir === 'asc' ? 1 : -1
+        this.list = this.list.sort((a,b)=>d*sortFunctions[this.sortId](a.val,b.val))
     }
 
     private sendUpdate(){
@@ -81,44 +82,33 @@ export default class SnpList {
     }
 }
 
-function sortByID( a : SnpVal, b : SnpVal, dir : SortDirection ): number {
+function sortByID( a : SnpVal, b : SnpVal ): number {
     let v1 = parseInt(a.snp.id.substr(2))
     let v2 = parseInt(b.snp.id.substr(2))
-    return  dir === 'asc' ? v1-v2 : v2-v1
+    return  v1-v2
 }
 
-function sortByChr( a : SnpVal, b : SnpVal, dir : SortDirection) : number {
-    return sortByTextField(a,b,dir,'chr')
+function sortByChr( a : SnpVal, b : SnpVal ) : number {
+    return sortByTextField(a,b,'chr')
 }
 
-function sortByBase(a : SnpVal, b : SnpVal, dir : SortDirection) : number {
-    return sortByTextField(a,b,dir,'bases')
+function sortByBase(a : SnpVal, b : SnpVal ) : number {
+    return sortByTextField(a,b,'bases')
 }
 
-function sortByTextField(a : SnpVal, b : SnpVal, dir : SortDirection, type : keyof snp) : number {
+function sortByTextField(a : SnpVal, b : SnpVal, type : keyof snp) : number {
     let v1 = a.snp[type]
     let v2 = b.snp[type]
-    let d  = dir === 'asc' ? 1 : -1
-    return d *( v1>v2 ? 1 : -1)
+    return  v1>v2 ? 1 : -1
 }
 
-function sortByPerc(a : SnpVal, b : SnpVal, dir : SortDirection) : number {
-    return sortByNullNumber(a,b,dir,'perc')
+function sortByPerc(a : SnpVal, b : SnpVal ) : number {
+    let v1 = a.perc ?? 2
+    let v2 = b.perc ?? 2
+    return v1-v2
 }
 
-function sortByPub(a : SnpVal, b : SnpVal, dir : SortDirection) : number {
-    return sortByNullNumber(a,b,dir,'pub')
+function sortByPub(a : SnpVal, b : SnpVal ) : number {
+    return  a.pub-b.pub
 }
 
-function sortByNullNumber(a : SnpVal, b : SnpVal, dir : SortDirection, type : keyof SnpVal) : number {
-    let v1 = a[type]
-    let v2 = b[type]
-    if( !v1 ) v1=2
-    if( !v2 ) v2=2
-    let cmp = ( v1>v2 ? 1 : -1)
-    if( v1===v2){
-        cmp = ( a.snp.id>b.snp.id ? 1 : -1)
-    }
-    let d  = dir === 'asc' ? 1 : -1
-    return d * cmp
-}
