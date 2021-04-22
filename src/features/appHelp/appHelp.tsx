@@ -33,9 +33,9 @@ const MapHelp = ()=>{
         <DialogTitle id="alert-dialog-title">{"SNPs and Me"}</DialogTitle>
          <DialogContent>
             <DialogContentText id="alert-dialog-description">
-            Drop 23andme file and the browser will color code the part of the genome (called <a href='https://en.wikipedia.org/wiki/Single-nucleotide_polymorphism'>SNP</a>) based on their frequency.
+            Drag and drop your 23andme file and the browser will color code the part of the genome (called <a href='https://en.wikipedia.org/wiki/Single-nucleotide_polymorphism'>SNP</a>) based on their frequency.
             You will be able to find the part which are <i>rare among the population</i> and so the ones which make you <i>unique</i> !<br/><br/>
-            Click on the SNP name to find out information about it from the <a href="https://www.ncbi.nlm.nih.gov/">National Center for Biochnology Information</a>. Watch this short youtube video
+            Click on the SNP ID to find out information about it from the <a href="https://www.ncbi.nlm.nih.gov/">National Center for Biochnology Information</a>.
             </DialogContentText>
             {
                 !isMobile && (
