@@ -15,6 +15,7 @@ import blue from "@material-ui/core/colors/blue";
 import AppMain from  './features/appMain/appMain';
 import AppToolbar from './features/appToolbar/appToolbar'
 import AppVersion from './features/appVersion/appVersion'
+import AppHelp from './features/appHelp/appHelp'
 
 const theme = createMuiTheme({
   palette: {
@@ -57,6 +58,7 @@ const App = ({ classes }: AppProps) => (
         <AppMain />
       </div>
       <AppVersion label="version : " forkme={false} baseURL="https://github.com/VittorioAccomazzi/snpsandme" />
+      <AppHelp/>
     </div>
   </MuiThemeProvider>
 );

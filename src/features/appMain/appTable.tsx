@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
 // need to use this mode for usign function calc
 const containerStyle = {maxHeight: 'calc(100% - 2em)'}
 
-interface snpsTableProps { data : string }
+interface AppTableProps { data : string }
 
 
-export default function AppTable({ data } : snpsTableProps) {
+export default function AppTable({ data } : AppTableProps) {
     const classes = useStyles()
     let worker = useRef<SnpList|null>(null)
     const dispatch= useDispatch();
