@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import GA4React from 'ga-4-react'
 
-const ga4react = new GA4React("G-QK0MGYD60T");
+const timeout = 30000 // millisecond.
+const ga4react = new GA4React("G-QK0MGYD60T", undefined, undefined, timeout);
 
 const main = async ()=>{
   await ga4react.initialize();
