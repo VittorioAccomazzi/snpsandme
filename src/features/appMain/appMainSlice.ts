@@ -61,27 +61,84 @@ export const filenameReducer= filenameSlice.reducer;
 
 /*
  *
- * Snps Slide
+ * is Loading
  *  
  */
-  export interface SnpEl {
-    val  : SnpVal,
-    done : boolean
+
+interface LoadingState {
+  loading : boolean
 }
 
+const loadingInitialState: LoadingState = {
+  loading : false
+};
+
+export const loadingSlice = createSlice({
+  name: 'Loading',
+  initialState: loadingInitialState,
+  reducers: {
+      setLoading : ( state, action : PayloadAction<boolean> ) => {
+          state.loading  = action.payload
+      }
+    }
+  })
+
+export const { setLoading } = loadingSlice.actions;
+export const selectLoading= (state: RootState) => state.loading.loading
+export const loadingReducer= loadingSlice.reducer;
+
+/*
+ *
+ *  Paging
+ *  
+ */
+
+interface PagingState {
+  page : number,
+  rowPerPage : number
+}
+
+const pagingInitialState: PagingState = {
+  page : 0,
+  rowPerPage : 50
+};
+
+export const pagingSlice = createSlice({
+  name: 'Paging',
+  initialState: pagingInitialState,
+  reducers: {
+      setPage : ( state, action : PayloadAction<number> ) => {
+          state.page  = action.payload
+      },
+      setRowPerPage : (state, action : PayloadAction<number>) =>{
+          state.rowPerPage = action.payload
+      }
+    }
+  })
+
+export const { setPage, setRowPerPage } = pagingSlice.actions;
+export const selectPaging= (state: RootState) => state.paging
+export const pagingReducer= pagingSlice.reducer;
+
+/*
+ *
+ * Snps List
+ *  
+ */
+
   interface SnpsState {
-    list : SnpEl[]
+    list : SnpVal[]
   }
   
-  const initialState: SnpsState = {
+  const snpsInitialState: SnpsState = {
     list : []
   };
 
   export const snpsSlice = createSlice({
     name: 'Snps',
-    initialState,
+    initialState: snpsInitialState,
     reducers: {
-        setSnps : ( state, action : PayloadAction<SnpEl[]> ) => {
+        setSnps : ( state, action : PayloadAction<SnpVal[]> ) => {
             state.list  = action.payload
         }
       }

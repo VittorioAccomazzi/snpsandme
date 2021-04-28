@@ -1,68 +1,88 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 import comlinkWorker from 'comlink-loader!./bWorker'
 import BackgroundWorker, {BackWorkerClassConstructors, SnpVal} from './bWorker'
-import { PopulationType } from '../../../genomeLib/frequencyEvaluator'
-import { snp } from '../../../genomeLib/snps'
-
+import {defaultSortField, defaultSortOrder, SortDirection, TableHeaderSortType} from '../appMainSlice'
+import {PopulationType} from '../../../genomeLib/frequencyEvaluator'
+import Snps ,{snp} from '../../../genomeLib/snps'
 
 const BackWorkerFactory = new comlinkWorker<BackWorkerClassConstructors>()
 
-export type Progress = (values : SnpVal[] ) => void
+export type Update = (list :SnpVal[] ) => void
 
- interface IDataQuery {
-     snps : snp [],
-     type  : PopulationType
- }
- const Timer = 200 // in ms
-/**
- * Foreground worker class. This class is designed to work  on the UI Javascript thread
- */
+const sortFunctions = {
+    ID : sortByID,
+    Chromosome : sortByChr,
+    Base : sortByBase,
+    Frequency : sortByPerc,
+    Publications : sortByPub
+}
+
 export default class ForegroundWorker {
 
-    private worker : BackgroundWorker | null = null // null when no computation is occurring
-    private data : IDataQuery | null = null // null when no comptation is reqested
-    private timerID : number | null= null // null when not defined.
-    private progress : Progress
+    private worker : BackgroundWorker | null = null
+    private update : Update
+    private list : SnpVal [] = []
+    private sortId : TableHeaderSortType = defaultSortField
+    private sortDir: SortDirection = defaultSortOrder
 
-    constructor( progress : Progress ){
-        this.progress = progress
+    constructor( update : Update ) {
+        this.update = update
     }
 
-    async start( snps : snp[], type : PopulationType ) : Promise<void> {
-        if( this.worker ) throw Error(`foreground worked invoked while processing.`)
-        this.data = { snps, type }
-        this.worker = await new BackWorkerFactory.default(this.data.type)
-        this.worker.start(this.data.snps)
-        this.startWorker()
+    async Evaluate( data : string, type : PopulationType  ){
+        this.worker = await new BackWorkerFactory.default(type)
+        let list = new Snps(data,["Y","MT"])
+        this.list= await this.worker.Evaluate(list.snpList)
+        this.worker = null
+        this.doSort()
+        this.sendUpdate()
     }
 
-    stop(){
-        if( this.timerID ) window.clearTimeout( this.timerID )
-        this.timerID = null
-        this.data = null
+    sort( id : TableHeaderSortType, dir : SortDirection ){
+        this.sortId = id
+        this.sortDir= dir
+        this.doSort()
+        this.sendUpdate()
     }
 
-    private async startWorker() : Promise<void> {
-
-        this.worker!.start(this.data!.snps)
-
-        const doWork = async ()=> {
-            if( this.data && this.worker ){
-                this.timerID = null
-                let res = await this.worker.Next()
-                if( this.data && this.worker ){ // need to re test becase ight have changed in the await above.
-                    if( res.length > 0 ){
-                        this.progress(res)
-                        this.timerID = window.setTimeout(doWork, Timer)
-                    } else {
-                        this.worker = null // we have completed.
-                        console.log('Completly Done...')
-                    }
-                }
-            }
-        }
-
-        doWork()
+    private doSort() {
+        let d  = this.sortDir === 'asc' ? 1 : -1
+        this.list = this.list.sort((a,b)=>d*sortFunctions[this.sortId](a,b))
     }
 
+    private sendUpdate(){
+        let clone : SnpVal [] = this.list.map(e=>({...e})) //  deep clone
+        this.update(clone)
+    }
 }
+
+function sortByID( a : SnpVal, b : SnpVal ): number {
+    let v1 = parseInt(a.snp.id.substr(2))
+    let v2 = parseInt(b.snp.id.substr(2))
+    return  v1-v2
+}
+
+function sortByChr( a : SnpVal, b : SnpVal ) : number {
+    return sortByTextField(a,b,'chr')
+}
+
+function sortByBase(a : SnpVal, b : SnpVal ) : number {
+    return sortByTextField(a,b,'bases')
+}
+
+function sortByTextField(a : SnpVal, b : SnpVal, type : keyof snp) : number {
+    let v1 = a.snp[type]
+    let v2 = b.snp[type]
+    return  v1>v2 ? 1 : -1
+}
+
+function sortByPerc(a : SnpVal, b : SnpVal ) : number {
+    let v1 = a.perc ?? 2
+    let v2 = b.perc ?? 2
+    return v1-v2
+}
+
+function sortByPub(a : SnpVal, b : SnpVal ) : number {
+    return  a.pub-b.pub
+}
+

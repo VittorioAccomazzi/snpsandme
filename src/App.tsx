@@ -10,6 +10,7 @@ import {
 import {
   MuiThemeProvider,
   CssBaseline,
+  Hidden,
 } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
 import AppMain from  './features/appMain/appMain';
@@ -57,7 +58,9 @@ const App = ({ classes }: AppProps) => (
       <div className={classes.main}>
         <AppMain />
       </div>
-      <AppVersion label="version : " forkme={false} baseURL="https://github.com/VittorioAccomazzi/snpsandme" />
+      <Hidden smDown >
+        <AppVersion label="version : " forkme={false} baseURL="https://github.com/VittorioAccomazzi/snpsandme" />
+      </Hidden>
       <AppHelp/>
     </div>
   </MuiThemeProvider>

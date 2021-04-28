@@ -84,23 +84,17 @@ test('shall invoke return with null values not in the cache', async ()=>{
 
 async function testsRun(worker: BackgroundWorker, testList : SnpVal [] ) {
     let snps = testList.map((v) => v.snp)
-    worker.start(snps)
-    let nReceived = 0
-    let  results : SnpVal []= []
-    do {
-        results = await worker.Next()
-        nReceived += results.length
-        results.forEach(result => {
-            let expected = testList.find((v) => v.snp.id === result.snp.id)!
-            expect(result.snp).toStrictEqual(expected.snp)
-            expect(result.pub).toBe(expected.pub)
-            if (expected.perc) {
-                expect(result.perc).not.toBeNull()
-                expect(result.perc).toBeCloseTo(expected.perc, 2)
-            } else {
-                expect(result.perc).toBeNull()
-            }
-        })
-    } while( results.length > 0 )
-    expect(nReceived).toBe(testList.length)
+    let  results : SnpVal [] = await worker.Evaluate(snps)
+    results.forEach(result => {
+        let expected = testList.find((v) => v.snp.id === result.snp.id)!
+        expect(result.snp).toStrictEqual(expected.snp)
+        expect(result.pub).toBe(expected.pub)
+        if (expected.perc) {
+            expect(result.perc).not.toBeNull()
+            expect(result.perc).toBeCloseTo(expected.perc, 2)
+        } else {
+            expect(result.perc).toBeNull()
+        }
+    })
+    expect(results.length).toBe(testList.length)
 }

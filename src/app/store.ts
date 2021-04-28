@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import populationReducer, {snpsReducer, filenameReducer} from '../features/appMain/appMainSlice';
+import populationReducer, {snpsReducer, filenameReducer, loadingReducer, pagingReducer} from '../features/appMain/appMainSlice';
 
 export const store = configureStore({
   reducer: {
     population: populationReducer,
     snps: snpsReducer,
-    filename: filenameReducer
+    filename: filenameReducer,
+    loading : loadingReducer,
+    paging : pagingReducer
   },
 });
 

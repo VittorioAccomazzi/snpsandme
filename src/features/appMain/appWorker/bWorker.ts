@@ -6,7 +6,6 @@ import { snp } from '../../../genomeLib/snps'
 import Downloder from '../../../genomeLib/downloader'
 export type BackWorkerClassConstructors = { new (populationType : PopulationType): BackgroundWorker }
 
-const numChunk = 24
 const numDownload = 6
 export interface SnpVal  {
     snp : snp,
@@ -23,31 +22,23 @@ export interface SnpVal  {
 export default class BackgroundWorker {
 
     private fEval: FrequencyEvaluator
-    private snps : snp[]= []
 
     constructor( populationType : PopulationType ){
-        let 
-        cache = new FrequencyCache()
+        let cache = new FrequencyCache()
         cache.load(SnpCache as [string,string][] )
         this.fEval = new FrequencyEvaluator(populationType,cache,true)
     }
 
-    start(snps : snp[] ) : void {
-        this.snps = [...snps]
-    }
-
-    async Next( ) : Promise<SnpVal[]> {
-        let proc = this.snps.splice(0,numChunk)
+    async Evaluate( snps : snp[] ) : Promise<SnpVal[]> {
         let res : SnpVal [] = []
-        if( proc.length > 0 ){
+        if( snps.length > 0 ){
             let downloader = new Downloder(numDownload)
             const progress = (snpId : string, perc : number | null, pub:  number) =>{
-                let snp = proc.find(v=>v.id===snpId)!
+                let snp = snps.find(v=>v.id===snpId)!
                 res.push({snp,perc,pub})
             }
-            await this.fEval.evaluate(proc,downloader,progress)
+            await this.fEval.evaluate(snps,downloader,progress)
         }
         return res
     }
-
 }

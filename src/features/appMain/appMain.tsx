@@ -7,7 +7,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Typography from '@material-ui/core/Typography';
 import SnpTable from './appTable'
 import { useDispatch } from 'react-redux';
-import { setFilename } from './appMainSlice';
+import { setFilename, setPage } from './appMainSlice';
 import { useGA4React } from 'ga-4-react';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
                 if( sanityCheck(data)){
                     setText(data)
                     dispatch(setFilename(file.name))
+                    dispatch(setPage(0))
                     if(ga) ga.event('Valid File Load', 'valid file', '')
                 } else {
                     setText(null)
